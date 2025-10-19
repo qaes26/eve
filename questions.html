@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أسئلة للنقاش - الجامعة</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .university-logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            color: #1a2a6c;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .question-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 30px 0;
+            text-align: right;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .question {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: #1a2a6c;
+            margin-bottom: 20px;
+        }
+        
+        .topic {
+            display: inline-block;
+            background: #e9ecef;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #495057;
+            margin-bottom: 15px;
+        }
+        
+        .topic.religious {
+            background: #ffe6e6;
+            color: #b21f1f;
+        }
+        
+        .topic.educational {
+            background: #e6f3ff;
+            color: #1a2a6c;
+        }
+        
+        .topic.social {
+            background: #fff9e6;
+            color: #b8860b;
+        }
+        
+        .topic.cultural {
+            background: #e6ffe6;
+            color: #2e8b57;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            background: #1a2a6c;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        button:hover {
+            background: #0d1a4d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        button.secondary {
+            background: #b21f1f;
+        }
+        
+        button.secondary:hover {
+            background: #8a1919;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .question {
+                font-size: 1.3rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- شعار الجامعة - يمكن استبداله بالشعار الفعلي -->
+            <div class="university-logo">
+                <svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="10" width="180" height="60" rx="10" fill="#1a2a6c" />
+                    <text x="100" y="45" text-anchor="middle" fill="white" font-family="Arial" font-size="18" font-weight="bold">شعار الجامعة</text>
+                </svg>
+            </div>
+            <h1>أسئلة للنقاش</h1>
+            <p class="subtitle">مواضيع متنوعة للنقاش الهادف</p>
+        </div>
+        
+        <div class="question-container">
+            <div id="topic" class="topic">موضوع السؤال</div>
+            <div id="question" class="question">سيتم عرض سؤال هنا</div>
+        </div>
+        
+        <div class="buttons">
+            <button id="newQuestion">سؤال جديد</button>
+            <button id="share" class="secondary">مشاركة السؤال</button>
+        </div>
+        
+        <div class="footer">
+            <p>من إعداد الطالب قيس الجازي</p>
+        </div>
+    </div>
+
+    <script>
+        // مجموعة الأسئلة (50 سؤال)
+        const questions = [
+            { text: "ما هو دور الطالب في الحفاظ على القيم الدينية في مجتمعه؟", topic: "ديني", class: "religious" },
+            { text: "كيف يمكن للمعلم أن يكون قدوة حسنة لطلابه؟", topic: "تعليمي", class: "educational" },
+            { text: "ما هي السبل التي يمكن للشباب من خلالها المساهمة في تنمية المجتمع؟", topic: "اجتماعي", class: "social" },
+            { text: "كيف نستفيد من التراث الثقافي في بناء مستقبل أفضل؟", topic: "ثقافي", class: "cultural" },
+            { text: "ما هي أهمية الصلاة في حياة الفرد والمجتمع؟", topic: "ديني", class: "religious" },
+            { text: "كيف يمكن للطالب أن يوازن بين الدراسة والأنشطة الاجتماعية؟", topic: "اجتماعي", class: "social" },
+            { text: "ما هو دور المعلم في تنمية التفكير النقدي لدى الطلاب؟", topic: "تعليمي", class: "educational" },
+            { text: "كيف نحافظ على اللغة العربية في عصر العولمة؟", topic: "ثقافي", class: "cultural" },
+            { text: "ما هي الأخلاق الإسلامية التي يجب أن يتحلى بها الطالب؟", topic: "ديني", class: "religious" },
+            { text: "كيف يمكن للشباب المشاركة في حل مشكلات المجتمع؟", topic: "اجتماعي", class: "social" },
+            { text: "ما هي أساليب التعليم الحديثة التي يمكن أن تطبق في مدارسنا؟", topic: "تعليمي", class: "educational" },
+            { text: "ما هي أهمية الحفاظ على التراث المعماري في بلادنا؟", topic: "ثقافي", class: "cultural" },
+            { text: "كيف يمكن للطالب أن يكون سفيراً لدينه في محيطه؟", topic: "ديني", class: "religious" },
+            { text: "ما هو دور المؤسسات التعليمية في تعزيز الانتماء الوطني؟", topic: "اجتماعي", class: "social" },
+            { text: "كيف يمكن للمعلم أن يواكب التطورات التكنولوجية في التعليم؟", topic: "تعليمي", class: "educational" },
+            { text: "ما هي السبل للحفاظ على الهوية الثقافية في ظل العولمة؟", topic: "ثقافي", class: "cultural" },
+            { text: "كيف يمكن للطالب أن يستفيد من شهر رمضان في تطوير ذاته؟", topic: "ديني", class: "religious" },
+            { text: "ما هي المسؤوليات الاجتماعية للطالب تجاه أسرته ومجتمعه؟", topic: "اجتماعي", class: "social" },
+            { text: "كيف يمكن للمعلم أن يطور من أساليب التقويم والتقييم؟", topic: "تعليمي", class: "educational" },
+            { text: "ما هي أهمية الأدب والشعر في الحفاظ على الثقافة العربية؟", topic: "ثقافي", class: "cultural" },
+            { text: "كيف يمكن للطالب أن يطبق سنة الرسول صلى الله عليه وسلم في حياته اليومية؟", topic: "ديني", class: "religious" },
+            { text: "ما هو دور الشباب في تعزيز التكافل الاجتماعي؟", topic: "اجتماعي", class: "social" },
+            { text: "كيف يمكن للمعلم أن يطور مهارات التواصل لدى طلابه؟", topic: "تعليمي", class: "educational" },
+            { text: "ما هي أهمية الفنون التقليدية في الحفاظ على الهوية الثقافية؟", topic: "ثقافي", class: "cultural" },
+            { text: "كيف يمكن للطالب أن يستفيد من القرآن الكريم في تنمية شخصيته؟", topic: "ديني", class: "religious" },
+            { text: "ما هو دور الطالب في التوعية بقضايا المجتمع؟", topic: "اجتماعي", class: "social" },
+            { text: "كيف يمكن للمعلم أن يطور بيئة صفية محفزة للإبداع؟", topic: "تعليمي", class: "educational" },
+            { text: "ما هي أهمية المطبخ التقليدي في الحفاظ على التراث الثقافي؟", topic: "ثقافي", class: "cultural" },
+            { text: "كيف يمكن للطالب أن يطبق مفهوم الإحسان في تعاملاته اليومية؟", topic: "ديني", class: "religious" },
+            { text: "ما هي السبل لتعزيز روح المبادرة لدى الشباب؟", topic: "اجتماعي", class: "social" },
+            { text: "كيف يمكن للمعلم أن يواجه تحديات التعليم عن بعد؟", topic: "تعليمي", class: "educational" },
+            { text: "ما هي أهمية الحفاظ على الصناعات التقليدية؟", topic: "ثقافي", class: "cultural" },
+            { text: "كيف يمكن للطالب أن يستفيد من سيرة الصحابة في بناء شخصيته؟", topic: "ديني", class: "religious" },
+            { text: "ما هو دور الطالب في نشر الوعي البيئي؟", topic: "اجتماعي", class: "social" },
+            { text: "كيف يمكن للمعلم أن يطور مهارات التفكير العليا لدى طلابه؟", topic: "تعليمي", class: "educational" },
+            { text: "ما هي أهمية الموسيقى والفنون في الثقافة العربية؟", topic: "ثقافي", class: "cultural" },
+            { text: "كيف يمكن للطالب أن يطبق مفهوم الصبر في حياته الدراسية؟", topic: "ديني", class: "religious" },
+            { text: "ما هو دور الشباب في تعزيز قيم التسامح والتعايش؟", topic: "اجتماعي", class: "social" },
+            { text: "كيف يمكن للمعلم أن يطور مهارات القيادة لدى طلابه؟", topic: "تعليمي", class: "educational" },
+            { text: "ما هي أهمية الحرف اليدوية في الحفاظ على التراث الثقافي؟", topic: "ثقافي", class: "cultural" },
+            { text: "كيف يمكن للطالب أن يستفيد من الدعاء في تحقيق أهدافه؟", topic: "ديني", class: "religious" },
+            { text: "ما هو دور الطالب في دعم ذوي الاحتياجات الخاصة في المجتمع؟", topic: "اجتماعي", class: "social" },
+            { text: "كيف يمكن للمعلم أن يوظف التكنولوجيا في تعزيز العملية التعليمية؟", topic: "تعليمي", class: "educational" },
+            { text: "ما هي أهمية الألعاب الشعبية في الحفاظ على التراث الثقافي؟", topic: "ثقافي", class: "cultural" },
+            { text: "كيف يمكن للطالب أن يطبق مفهوم الشكر في حياته اليومية؟", topic: "ديني", class: "religious" },
+            { text: "ما هو دور الشباب في تعزيز الأمن الفكري في المجتمع؟", topic: "اجتماعي", class: "social" },
+            { text: "كيف يمكن للمعلم أن يطور مهارات العمل الجماعي لدى طلابه؟", topic: "تعليمي", class: "educational" },
+            { text: "ما هي أهمية الزي التقليدي في الحفاظ على الهوية الثقافية؟", topic: "ثقافي", class: "cultural" },
+            { text: "كيف يمكن للطالب أن يستفيد من القصص القرآنية في توجيه سلوكه؟", topic: "ديني", class: "religious" },
+            { text: "ما هو دور الطالب في تعزيز قيم النزاهة ومكافحة الفساد؟", topic: "اجتماعي", class: "social" }
+        ];
+
+        // عناصر DOM
+        const questionElement = document.getElementById('question');
+        const topicElement = document.getElementById('topic');
+        const newQuestionButton = document.getElementById('newQuestion');
+        const shareButton = document.getElementById('share');
+
+        // عرض سؤال عشوائي
+        function displayRandomQuestion() {
+            const randomIndex = Math.floor(Math.random() * questions.length);
+            const randomQuestion = questions[randomIndex];
+            
+            questionElement.textContent = randomQuestion.text;
+            topicElement.textContent = randomQuestion.topic;
+            
+            // إزالة جميع الفئات السابقة وإضافة الفئة المناسبة
+            topicElement.className = 'topic';
+            topicElement.classList.add(randomQuestion.class);
+        }
+
+        // مشاركة السؤال
+        function shareQuestion() {
+            const currentQuestion = questionElement.textContent;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'سؤال للنقاش',
+                    text: currentQuestion,
+                    url: window.location.href
+                })
+                .then(() => console.log('تمت المشاركة بنجاح'))
+                .catch((error) => console.log('خطأ في المشاركة:', error));
+            } else {
+                // نسخ السؤال إلى الحافظة إذا لم يكن المشاركة متاحة
+                navigator.clipboard.writeText(currentQuestion)
+                    .then(() => alert('تم نسخ السؤال إلى الحافظة'))
+                    .catch(err => console.error('فشل في نسخ النص: ', err));
+            }
+        }
+
+        // الأحداث
+        newQuestionButton.addEventListener('click', displayRandomQuestion);
+        shareButton.addEventListener('click', shareQuestion);
+
+        // عرض سؤال عشوائي عند تحميل الصفحة
+        displayRandomQuestion();
+    </script>
+</body>
+</html>
